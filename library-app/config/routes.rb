@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :books
   resources :libraries
   resources :users
   get '/login' => "sessions#new"
