@@ -1,1 +1,4 @@
-<%= @library.name %>
+<%= @library.name %><br>
+<% @library.books.each do |book| %>
+    <%= link_to book.title, book_path(book) %>
+<% end %>
