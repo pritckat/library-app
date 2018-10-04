@@ -1,5 +1,4 @@
 <%= @book.title %>
 <% @book.authors.each do |a| %>
-<%= "#{a.first_name} #{a.last_name}"%>
+<%= a.full_name %>
 <% end %>
-<%= @book.author_names %>

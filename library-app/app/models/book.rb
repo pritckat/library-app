@@ -5,7 +5,4 @@ class Book < ApplicationRecord
     has_many :authors, through: :book_authors
 
 
-    def author_names
-        self.authors.first.full_name
-    end
 end
