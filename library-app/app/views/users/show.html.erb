@@ -1,1 +1,9 @@
 <h2>Hello, <%=@user.username%>!</h2>
+
+<h4> Your Libraries: </h4>
+    <ul>
+        <% @user.libraries.each do |lib| %>
+            <li><%= lib.name %>
+        <% end %>
+    </ul>
+    
