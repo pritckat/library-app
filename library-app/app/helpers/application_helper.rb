@@ -14,4 +14,10 @@ module ApplicationHelper
         end
     end
 
+    def add_my_account_button
+        if logged_in?
+            link_to "My Libraries", user_path(current_user)
+        end
+    end
+
 end
