@@ -6,7 +6,12 @@ class BooksController < ApplicationController
     
     def new
         @book = Book.new
-        @library = Library.find(params[:library_id])
+        if params[:library_id]
+            @library = Library.find(params[:library_id])
+        else
+            flash.alert = "Please pick the library you would like to add a book to, or create a new library."
+            redirect_to user_path(current_user)
+        end
     end
 
     def create
