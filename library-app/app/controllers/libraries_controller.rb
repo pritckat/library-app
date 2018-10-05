@@ -6,6 +6,9 @@ class LibrariesController < ApplicationController
 
     def new
         @library = Library.new
+        5.times do
+         @library.books.build
+        end
     end
 
     def create
@@ -21,6 +24,12 @@ class LibrariesController < ApplicationController
 
     private
     def library_params
-        params.require(:library).permit(:name)
+        params.require(:library).permit(
+            :name,
+            books_attributes: [
+                :title,
+                :language
+            ]
+        )
     end
 end
