@@ -8,3 +8,4 @@
     </ul>
 
 <%= link_to "Create New Library", new_library_path%>
+<%= link_to "Add A Book", new_library_book_path(Library.find_by(name: "New")) %>
