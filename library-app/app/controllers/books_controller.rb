@@ -6,10 +6,14 @@ class BooksController < ApplicationController
     
     def new
         @book = Book.new
+        @library = Library.find(params[:library_id])
     end
 
     def create
         @book = Book.create(book_params)
+        if params[:library_id]
+            @book.libraries << Library.find(params[:library_id])
+        end
         redirect_to book_path(@book)
     end
 
