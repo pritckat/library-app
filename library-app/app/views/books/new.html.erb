@@ -3,11 +3,11 @@
 <%= f.text_field :title %>
 <%= f.label :language %>
 <%= f.text_field :language %>
-<%= f.fields_for :authors do |author| %>
-    <%= author.label :first_name %>
-    <%= author.text_field :first_name %>
-    <%= author.label :last_name %>
-    <%= author.text_field :last_name %>
-<% end %>
+Author<%= f.text_field :authors, list: "authors_autocomplete", :value => "" %>
+    <datalist id="authors_autocomplete">
+    <% Author.all.each do |author| %>
+        <option value="<%= author.full_name%>">
+    <% end %>
+    </datalist>
 <%= f.submit %>
 <% end %>

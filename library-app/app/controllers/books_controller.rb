@@ -22,7 +22,9 @@ class BooksController < ApplicationController
     end
 
     def create
+        #raise params
         @book = Book.create(book_params)
+        @book.author_attributes=(params[:book][:authors])
         if params[:library_id]
             @book.libraries << Library.find(params[:library_id])
         end
