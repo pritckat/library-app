@@ -8,7 +8,7 @@ class Book < ApplicationRecord
         first_name = names.first
         last_name = names.last
         self.author = Author.find_or_create_by(first_name: first_name, last_name: last_name)
-        self.author.update(author)
+        self.save
     end
 
 end

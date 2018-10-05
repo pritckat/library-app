@@ -21,6 +21,7 @@ class BooksController < ApplicationController
     def create
         #raise params
         @book = Book.create(book_params)
+        @book.author_attributes=(params[:book][:author])
         if params[:library_id]
             @book.libraries << Library.find(params[:library_id])
         end
@@ -31,11 +32,7 @@ class BooksController < ApplicationController
 
     def book_params
         params.require(:book).permit(
-            :title, :language,
-            author_attributes: [
-                :first_name,
-                :last_name
-            ]
+            :title, :language
         )
     end
 end
