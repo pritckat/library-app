@@ -1,4 +1,4 @@
-<%= @book.title %>
+<h2><%= @book.title %></h2>
 <% @book.authors.each do |a| %>
-<%= a.full_name %>
+<p>By: <%= link_to a.full_name, author_path(a) %></p>
 <% end %>
