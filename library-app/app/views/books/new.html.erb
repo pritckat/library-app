@@ -3,5 +3,11 @@
 <%= f.text_field :title %>
 <%= f.label :language %>
 <%= f.text_field :language %>
+<%= f.fields_for :authors do |author| %>
+    <%= author.label :first_name %>
+    <%= author.text_field :first_name %>
+    <%= author.label :last_name %>
+    <%= author.text_field :last_name %>
+<% end %>
 <%= f.submit %>
 <% end %>

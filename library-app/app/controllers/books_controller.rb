@@ -10,6 +10,9 @@ class BooksController < ApplicationController
     
     def new
         @book = Book.new
+        2.times do
+            @book.authors.build
+        end
         if params[:library_id]
             @library = Library.find(params[:library_id])
         else
@@ -29,6 +32,12 @@ class BooksController < ApplicationController
     private
 
     def book_params
-        params.require(:book).permit(:title, :language)
+        params.require(:book).permit(
+            :title, :language,
+            authors_attributes: [
+                :first_name,
+                :last_name
+            ]
+        )
     end
 end
