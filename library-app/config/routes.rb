@@ -13,5 +13,9 @@ Rails.application.routes.draw do
   resources :libraries do
     resources :books, only: [:new, :create]
   end
+
+  resources :users do
+    resources :books, only: [:index]
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

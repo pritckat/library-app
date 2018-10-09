@@ -1,7 +1,13 @@
 class BooksController < ApplicationController
 
     def index
-        @books = Book.all 
+        if params[:user_id]
+            @user = User.find(params[:user_id])
+            @books = @user.books
+        else
+            @books = Book.all 
+    
+        end
     end
     
     def show
