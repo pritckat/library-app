@@ -5,9 +5,15 @@
     By: <%= link_to @book.author.full_name, author_path(@book.author) %>
 <% end %>
 <br>
-<%= @book.user%>
-<%= @book.library %>
-<%= @book.loaned_to%>
+<% @book.users.each do |u| %>
+Owned by: <%= link_to u.username, user_path(u) %>
+<% end %><br>
+<% @book.libraries.each do |lib| %>
+In Library: <%= link_to lib.name, library_path(lib)%>
+<% end %><br>
+<%if @book.loaned %>
+On Loan To: <%= @book.loaned_to%>
+<% end %><br>
 <%= link_to "Edit Book", edit_book_path(@book) %>
 <%= form_tag book_path(@book), method: "delete" do %>
     <%= submit_tag "Delete #{@book.title}" %>
