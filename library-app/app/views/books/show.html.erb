@@ -4,4 +4,8 @@
 <% if @book.author %>
     By: <%= link_to @book.author.full_name, author_path(@book.author) %>
 <% end %>
-
+<br>
+<%= link_to "Edit Book", edit_book_path(@book) %>
+<%= form_tag book_path(@book), method: "delete" do %>
+    <%= submit_tag "Delete #{@book.title}" %>
+<% end %>
