@@ -50,6 +50,10 @@ class BooksController < ApplicationController
         redirect_to user_path(current_user)
     end
 
+    def loan
+        @book = Book.find(params[:id])
+    end
+
     private
 
     def book_params

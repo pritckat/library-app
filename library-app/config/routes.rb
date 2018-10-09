@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   post '/login' => "sessions#create"
   delete '/logout' => "sessions#destroy"
 
+  get '/books/:id/loan' => "books#loan"
+  
   resources :libraries do
     resources :books, only: [:new, :create]
   end
