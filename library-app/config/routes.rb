@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   delete '/logout' => "sessions#destroy"
 
   get '/books/:id/loan' => "books#loan"
-  
+  patch '/books/:id/loaned' => "books#loaned", as: "loan"
+
   resources :libraries do
     resources :books, only: [:new, :create]
   end

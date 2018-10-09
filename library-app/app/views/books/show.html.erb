@@ -5,6 +5,9 @@
     By: <%= link_to @book.author.full_name, author_path(@book.author) %>
 <% end %>
 <br>
+<%= @book.user%>
+<%= @book.library %>
+<%= @book.loaned_to%>
 <%= link_to "Edit Book", edit_book_path(@book) %>
 <%= form_tag book_path(@book), method: "delete" do %>
     <%= submit_tag "Delete #{@book.title}" %>

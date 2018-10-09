@@ -2,6 +2,7 @@ class Book < ApplicationRecord
     has_many :library_books
     has_many :libraries, through: :library_books
     belongs_to :author
+    belongs_to :user, through: :libraries
 
     def author_attributes=(author)
         names = author.split(" ")

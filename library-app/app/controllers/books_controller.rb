@@ -54,6 +54,12 @@ class BooksController < ApplicationController
         @book = Book.find(params[:id])
     end
 
+    def loaned
+        @book = Book.find(params[:id])
+        @book.loaned_to = User.find_by(username: params[:book][:loaned_to])
+        redirect_to book_path(@book)
+    end
+
     private
 
     def book_params
