@@ -3,3 +3,6 @@
     <li><%= link_to book.title, book_path(book) %>
 <% end %><br>
 <%= link_to "Add Book", new_library_book_path(@library)%>
+<%= form_tag library_path(@library), method: "delete" do %>
+    <%= submit_tag "Delete #{@library.name}" %>
+<% end %>

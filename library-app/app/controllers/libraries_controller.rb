@@ -32,6 +32,14 @@ class LibrariesController < ApplicationController
         redirect_to library_path(@library)
     end
 
+    def destroy
+        @library = Library.find(params[:id])
+        @new = Library.find_by(name: "New")
+        @new.books << @library.books
+        @library.destroy
+        redirect_to user_path(current_user)
+    end
+    
     private
     def library_params
         params.require(:library).permit(
