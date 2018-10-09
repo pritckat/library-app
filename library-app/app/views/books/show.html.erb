@@ -1,3 +1,5 @@
 <h2><%= @book.title %></h2>
 <br>
+<% if @book.author %>
 By: <%= link_to @book.author.full_name, author_path(@book.author) %>
+<% end %>
