@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root "welcome#show"
+  
   resources :authors
   resources :books
   resources :libraries
