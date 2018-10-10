@@ -62,6 +62,10 @@ class BooksController < ApplicationController
 
     def loan
         @book = Book.find(params[:id])
+        if @book.users.first != current_user
+            flash.alert = "You cannot loan another person's book."
+            redirect_to book_path(@book)
+        end
     end
 
     def loaned
