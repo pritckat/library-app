@@ -7,6 +7,10 @@ class UsersController < ApplicationController
     def create
         @user = User.create(user_params)
         if @user.save
+            @user.libraries << Library.new(name: "New")
+            @user.libraries << Library.new(name: "On Loan")
+            @user.libraries << Library.new(name: "Loaned")
+            session[:user_id] = @user.id
             redirect_to user_path(@user)
         else
             render new_user_path
