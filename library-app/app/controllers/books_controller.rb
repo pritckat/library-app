@@ -58,7 +58,7 @@ class BooksController < ApplicationController
 
     def loaned
         @book = Book.find(params[:id])
-        @user = User.find_by(username: params[:book][:loaned_to])
+        @user = User.find_by(id: params[:book][:loaned_to])
         @book.loaned_to = @user.id
         @book.loaned = true
         lib = Library.find_by(name: "On Loan", user_id: current_user)
