@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_09_212144) do
+ActiveRecord::Schema.define(version: 2018_10_10_200025) do
 
   create_table "authors", force: :cascade do |t|
     t.string "first_name"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2018_10_09_212144) do
     t.text "description"
     t.boolean "loaned", default: false
     t.integer "loaned_to"
+    t.integer "owned_by"
   end
 
   create_table "libraries", force: :cascade do |t|

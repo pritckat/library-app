@@ -46,7 +46,8 @@ class LibrariesController < ApplicationController
             :name,
             books_attributes: [
                 :title,
-                :language
+                :language,
+                :owned_by => current_user
             ]
         )
     end

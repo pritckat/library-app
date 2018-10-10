@@ -30,8 +30,10 @@ class BooksController < ApplicationController
 
     def create
         #raise params
-        @book = Book.create(book_params)
+        @book = Book.new(book_params)
         @book.author_attributes=(params[:book][:author])
+        @book.owned_by = current_user.id
+        @book.save
         if params[:library_id]
             @book.libraries << Library.find(params[:library_id])
         end
@@ -61,13 +63,12 @@ class BooksController < ApplicationController
 
     def loan
         @book = Book.find(params[:id])
-        if @book.users.first != current_user
+        if @book.owned_by != current_user.id
             flash.alert = "You cannot loan another person's book."
             redirect_to book_path(@book)
-        end
-        if @book.loaned == true
+        elsif @book.loaned == true
             flash.alert = "This book is already loaned to #{@book.loanee_name}"
-            redirect_to book_path(@book)
+            render book_path(@book)
         end
     end
 
@@ -76,8 +77,8 @@ class BooksController < ApplicationController
         @user = User.find_by(id: params[:book][:loaned_to])
         @book.loaned_to = @user.id
         @book.loaned = true
-        lib = Library.find_by(name: "On Loan", user_id: current_user)
-        lib2 = Library.find_by(name: "Loaned", user_id: @user.id)
+        lib = Library.find_by(name: Library.books_user_is_loaning, user_id: current_user)
+        lib2 = Library.find_by(name: Library.books_loaned_to_user, user_id: @user.id)
         lib.books << @book
         lib2.books << @book
         @book.save
@@ -93,8 +94,9 @@ class BooksController < ApplicationController
             redirect_to book_path(@book)
         end
         @book.loaned = false
-        lib = Library.find_by(name: "Loaned", user: current_user)
-        lib2 = Library.find_by(name: "On Loan", user: @book.users.first)
+        owner = User.find(@book.owned_by)
+        lib = Library.find_by(name: Library.books_loaned_to_user, user: current_user)
+        lib2 = Library.find_by(name: Library.books_user_is_loaning, user: owner)
         lib.books.delete(@book)
         lib2.books.delete(@book)
         lib.save
