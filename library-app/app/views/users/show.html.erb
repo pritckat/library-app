@@ -1,6 +1,10 @@
+<%if @user == current_user %>
 <h2>Hello, <%=@user.username%>!</h2>
 
 <h4> Your Libraries: </h4>
+<% else %>
+<h2><%=@user.username%>'s Libraries</h2>
+<%end%>
     <ul>
         <% @user.libraries.each do |lib| %>
             <li><%= link_to lib.name, library_path(lib) %>
