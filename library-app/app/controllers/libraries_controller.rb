@@ -16,6 +16,7 @@ class LibrariesController < ApplicationController
         @library.user = current_user
         @library.save
         if @library.save
+            @library.remove_empty_books
             redirect_to library_path(@library)
         else
             render new_library_path
@@ -50,5 +51,7 @@ class LibrariesController < ApplicationController
             ]
         )
     end
+
+
 
 end
