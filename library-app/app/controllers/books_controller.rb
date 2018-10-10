@@ -60,6 +60,8 @@ class BooksController < ApplicationController
         @user = User.find_by(username: params[:book][:loaned_to])
         @book.loaned_to = @user.id
         @book.loaned = true
+        lib = Library.find_by(name: "Loaned", user_id: current_user)
+        lib.books << @book
         @book.save
         redirect_to book_path(@book)
     end

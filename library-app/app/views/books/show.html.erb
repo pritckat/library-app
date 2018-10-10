@@ -5,11 +5,18 @@
     By: <%= link_to @book.author.full_name, author_path(@book.author) %>
 <% end %>
 <br>
+
+Owned by: <%users = []%>
 <% @book.users.each do |u| %>
-Owned by: <%= link_to u.username, user_path(u) %>
+    <% users << u %>
+    <% users.uniq!%>
+<% end %>
+<% users.each do |u|%>
+    <%= link_to u.username, user_path(u) %>
 <% end %><br>
-<% @book.libraries.each do |lib| %>
-In Library: <%= link_to lib.name, library_path(lib)%>
+
+In Library:<% @book.libraries.each do |lib| %>
+<%= link_to lib.name, library_path(lib)%>
 <% end %><br>
 <%if @book.loaned %>
 On Loan To: <%= link_to @loaned.username, user_path(@loaned) %>
