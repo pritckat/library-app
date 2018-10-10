@@ -9,5 +9,8 @@ Author<%= f.text_field :author, list: "authors_autocomplete", :value => "" %>
         <option value="<%= author.full_name%>">
     <% end %>
     </datalist>
+    <br>
+<%= f.collection_check_boxes :library_ids, @user.non_mandatory_libraries - Library.mandatory, :id, :name %>
+    <br>
 <%= f.submit %>
 <% end %>
