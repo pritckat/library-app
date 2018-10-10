@@ -12,7 +12,9 @@
   <body>
     <%= add_my_account_button %>
     <%= add_logout_button %>
+    <% if current_user%>
     <p>Logged in: <%=current_user.username%></p>
+    <% end %>
     <br>
     <%= flash.alert%><br>
     <%= yield %>

@@ -7,9 +7,9 @@ class UsersController < ApplicationController
     def create
         @user = User.create(user_params)
         if @user.save
-            @user.libraries << Library.new(name: "New")
-            @user.libraries << Library.new(name: "On Loan")
-            @user.libraries << Library.new(name: "Loaned")
+            @user.libraries << Library.new(name: Library.uncategorized_books)
+            @user.libraries << Library.new(name: Library.books_loaned_to_user)
+            @user.libraries << Library.new(name: Library.books_user_is_loaning)
             session[:user_id] = @user.id
             redirect_to user_path(@user)
         else

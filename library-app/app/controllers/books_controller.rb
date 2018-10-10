@@ -6,7 +6,6 @@ class BooksController < ApplicationController
             @books = @user.books
         else
             @books = Book.all 
-    
         end
     end
     
@@ -66,6 +65,10 @@ class BooksController < ApplicationController
             flash.alert = "You cannot loan another person's book."
             redirect_to book_path(@book)
         end
+        if @book.loaned == true
+            flash.alert = "This book is already loaned to #{@book.loanee_name}"
+            redirect_to book_path(@book)
+        end
     end
 
     def loaned
@@ -85,6 +88,10 @@ class BooksController < ApplicationController
 
     def return
         @book = Book.find(params[:id])
+        if @book.loaned_to != current_user.id
+            flash.alert "This book is not loaned to you."
+            redirect_to book_path(@book)
+        end
         @book.loaned = false
         lib = Library.find_by(name: "Loaned", user: current_user)
         lib2 = Library.find_by(name: "On Loan", user: @book.users.first)
