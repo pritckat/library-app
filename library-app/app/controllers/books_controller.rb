@@ -61,7 +61,6 @@ class BooksController < ApplicationController
         @book.loaned_to = @user.id
         @book.loaned = true
         @book.save
-        #raise params
         redirect_to book_path(@book)
     end
 

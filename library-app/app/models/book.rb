@@ -21,4 +21,5 @@ class Book < ApplicationRecord
         user = User.find_by(id: self.loaned_to)
         user.username
     end
+
 end
