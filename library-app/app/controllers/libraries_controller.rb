@@ -15,6 +15,7 @@ class LibrariesController < ApplicationController
         @library = Library.new(library_params)
         @library.user = current_user
         @library.save
+        raise params
         if @library.save
             @library.remove_empty_books
             redirect_to library_path(@library)
