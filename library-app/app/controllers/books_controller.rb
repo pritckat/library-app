@@ -42,6 +42,10 @@ class BooksController < ApplicationController
     def edit
         @book = Book.find(params[:id])
         @user = current_user
+        if @book.users.first != current_user
+            flash.alert = "You cannot edit other people's books."
+            redirect_to book_path(@book)
+        end
     end
 
     def update
