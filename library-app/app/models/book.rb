@@ -17,4 +17,8 @@ class Book < ApplicationRecord
         self.save
     end
 
+    def loanee_name
+        user = User.find_by(id: self.loaned_to)
+        user.username
+    end
 end

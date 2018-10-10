@@ -1,6 +1,6 @@
 <h1>Loan Form</h1>
 <%= form_for @book, url: loan_path do |f| %>
 <%= f.label :loaned_to %>
-<%= f.text_field :loaned_to %>
+<%= f.text_field :loaned_to, value: @book.loanee_name %>
 <%= f.submit %>
 <% end %>

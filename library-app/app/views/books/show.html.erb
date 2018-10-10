@@ -12,9 +12,10 @@ Owned by: <%= link_to u.username, user_path(u) %>
 In Library: <%= link_to lib.name, library_path(lib)%>
 <% end %><br>
 <%if @book.loaned %>
-On Loan To: <%= @book.loaned_to%>
+On Loan To: <%= link_to @loaned.username, user_path(@loaned) %>
 <% end %><br>
 <%= link_to "Edit Book", edit_book_path(@book) %>
+<%= link_to "Loan Book", loan_book_path(@book)%>
 <%= form_tag book_path(@book), method: "delete" do %>
     <%= submit_tag "Delete #{@book.title}" %>
 <% end %>

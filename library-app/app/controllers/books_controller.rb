@@ -12,6 +12,7 @@ class BooksController < ApplicationController
     
     def show
         @book = Book.find(params[:id])
+        @loaned = User.find_by(id: @book.loaned_to)
     end
     
     def new
@@ -56,7 +57,11 @@ class BooksController < ApplicationController
 
     def loaned
         @book = Book.find(params[:id])
-        @book.loaned_to = User.find_by(username: params[:book][:loaned_to])
+        @user = User.find_by(username: params[:book][:loaned_to])
+        @book.loaned_to = @user.id
+        @book.loaned = true
+        @book.save
+        #raise params
         redirect_to book_path(@book)
     end
 

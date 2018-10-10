@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post '/login' => "sessions#create"
   delete '/logout' => "sessions#destroy"
 
-  get '/books/:id/loan' => "books#loan"
+  get '/books/:id/loan' => "books#loan", as: "loan_book"
   patch '/books/:id/loaned' => "books#loaned", as: "loan"
 
   resources :libraries do
