@@ -65,7 +65,22 @@ class BooksController < ApplicationController
         lib.books << @book
         lib2.books << @book
         @book.save
+        lib.save
+        lib2.save
         redirect_to book_path(@book)
+    end
+
+    def return
+        @book = Book.find(params[:id])
+        @book.loaned = false
+        lib = Library.find_by(name: "Loaned", user: current_user)
+        lib2 = Library.find_by(name: "On Loan", user: @book.users.first)
+        lib.books.delete(@book)
+        lib2.books.delete(@book)
+        lib.save
+        lib2.save
+        @book.save
+        redirect_to library_path(lib)
     end
 
     private

@@ -3,6 +3,8 @@ class Book < ApplicationRecord
     has_many :libraries, through: :library_books
     belongs_to :author, optional: true
     has_many :users, through: :libraries
+
+    validates :title, presence: true
     
     def author_attributes=(author)
         names = author.split(" ")

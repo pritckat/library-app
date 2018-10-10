@@ -2,7 +2,6 @@ class LibrariesController < ApplicationController
 
     def show
         @library = Library.find(params[:id])
-        @library.remove_empty_books
     end
 
     def new
@@ -14,7 +13,6 @@ class LibrariesController < ApplicationController
 
     def create
         @library = Library.new(library_params)
-        @library.remove_empty_books
         @library.user = current_user
         @library.save
         if @library.save
@@ -51,10 +49,6 @@ class LibrariesController < ApplicationController
                 :language
             ]
         )
-    end
-
-    def remove_empty_books
-        self.books.delete_if {|b| b.title.strip == ""}
     end
 
 
