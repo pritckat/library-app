@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "welcome#show"
+  root "welcome#show", as: "welcome"
   
   resources :authors
   resources :books
