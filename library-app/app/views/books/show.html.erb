@@ -24,7 +24,7 @@ On Loan To: <%= link_to @loaned.username, user_path(@loaned) %>
 <%= link_to "Return Book", return_book_path %>
 <% end %><br>
 
-<%= link_to "Edit Book", edit_book_path(@book) %>
+<%= link_to "Edit or Move Book", edit_book_path(@book) %>
 <%= link_to "Loan Book", loan_book_path(@book)%>
 <%= form_tag book_path(@book), method: "delete" do %>
     <%= submit_tag "Delete #{@book.title}" %>

@@ -88,7 +88,7 @@ class BooksController < ApplicationController
 
     def book_params
         params.require(:book).permit(
-            :title, :language
+            :title, :language, :library_ids => []
         )
     end
 end
