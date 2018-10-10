@@ -19,6 +19,10 @@ class BooksController < ApplicationController
         @book = Book.new
         if params[:library_id]
             @library = Library.find(params[:library_id])
+            if @library.user != current_user
+                flash.alert = "You cannot place books in other people's libraries."
+                redirect_to library_path(@library)
+            end
         else
             flash.alert = "Please pick the library you would like to add a book to, or create a new library."
             redirect_to user_path(current_user)
