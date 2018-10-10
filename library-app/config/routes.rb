@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get '/books/:id/loan' => "books#loan", as: "loan_book"
   patch '/books/:id/loaned' => "books#loaned", as: "loan"
 
+  get '/books/:id/return' => "books#return", as: "return_book"
+
   resources :libraries do
     resources :books, only: [:new, :create]
   end

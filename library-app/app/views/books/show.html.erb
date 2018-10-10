@@ -21,6 +21,7 @@ In Library:<% @book.libraries.each do |lib| %>
 
 <%if @book.loaned %>
 On Loan To: <%= link_to @loaned.username, user_path(@loaned) %>
+<%= link_to "Return Book", return_book_path %>
 <% end %><br>
 
 <%= link_to "Edit Book", edit_book_path(@book) %>
